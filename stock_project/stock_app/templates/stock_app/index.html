@@ -1,0 +1,50 @@
+{% extends 'stock_app/base.html' %}
+
+{% block content %}
+
+<h1 div class = 'heading'>Simple Stock Exchange</h1>
+<h3 div class = "center blue">{{message}}</h3>
+<br/>
+<div>
+  <div class = 'col-md-6'>
+    <form action = '/symbol' input = 'GET'>
+      Stock Symbol: <input type = 'text' name = 's'>
+      <input type = 'submit'>
+    </form>
+      <br/>
+    <h4>Stock Name: {{name}} ({{symbol}})</h4>
+    <table div class = 'table'>
+      <th>Bid</th>
+      <th>Ask</th>
+      <tr>
+        <td>{{bid}}</td>
+        <td>{{ask}}</td>
+      </tr>
+    </table>
+    <form action = '/buy' input = 'GET'>
+      Quantity: <input type = 'integer' name = 'q'>
+      <input type = 'Submit' value = 'BUY' name = 'buy'>
+      <input type = 'Submit' value = 'SELL' name = 'sell'>
+    </form>
+  </div>
+  <div class = 'col-md-6'>
+    <h4>Current Portfolio</h4>
+    <h4>Cash: ${{money}}</h4>
+      <table div class = 'table'>
+        <th>Company</th>
+        <th>Quantity</th>
+        <th>Price Paid</th>
+        {% for  company in stocks.items %}
+          {% for key in company %}
+            <tr>
+              <td>{{key.name}}</td>
+              <td>{{key.quantity}}</td>
+              <td>{{key.price}}</td>
+            </tr>
+          {% endfor %}
+        {% endfor %}
+      </table>
+  </div>
+</div>
+
+{% endblock %}
