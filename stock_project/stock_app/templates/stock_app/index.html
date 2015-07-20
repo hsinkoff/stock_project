@@ -1,4 +1,5 @@
 {% extends 'stock_app/base.html' %}
+{% load humanize %}
 
 {% block content %}
 
@@ -8,7 +9,7 @@
 <div>
   <div class = 'col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1'>
     <form action = '/symbol' input = 'GET'>
-      Stock Symbol: <input type = 'text' name = 's'>
+      <strong>Stock Symbol: <input type = 'text' name = 's'></strong>
       <input type = 'submit'>
     </form>
     <br/>
@@ -18,8 +19,8 @@
         <th>Bid</th>
         <th>Ask</th>
         <tr>
-          <td>{{bid}}</td>
-          <td>{{ask}}</td>
+          <td>{{bid|floatformat:2|intcomma}}</td>
+          <td>{{ask|floatformat:2|intcomma}}</td>
         </tr>
       </table>      
       <form action = '/buy' input = 'GET'>
@@ -31,18 +32,20 @@
   </div>
   <div class = 'col-md-5 col-lg-5'>
     <h4>Current Portfolio</h4>
-    <h4>Cash: ${{money}}</h4>
+    <h4>Cash: ${{money|floatformat:2|intcomma}}</h4>
       <table div class = 'table stocks'>
         <th>Company</th>
         <th>Quantity</th>
         <th>Price Paid</th>
         {% for  company in stocks.items %}
           {% for key in company %}
-            <tr>
-              <td>{{key.name}}</td>
-              <td>{{key.quantity}}</td>
-              <td>{{key.price}}</td>
-            </tr>
+            {% if key.name %}
+              <tr>
+                <td>{{key.name}}</td>
+                <td>{{key.quantity}}</td>
+                <td>${{key.price|floatformat:2|intcomma}}</td>
+              </tr>
+            {% endif %}
           {% endfor %}
         {% endfor %}
       </table>
