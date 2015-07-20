@@ -6,7 +6,7 @@
 <h3 div class = "center blue">{{message}}</h3>
 <br/>
 <div>
-  <div class = 'col-md-6'>
+  <div class = 'col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1'>
     <form action = '/symbol' input = 'GET'>
       Stock Symbol: <input type = 'text' name = 's'>
       <input type = 'submit'>
@@ -14,7 +14,7 @@
     <br/>
     {%if name %}
       <h4>Stock Name: {{name}} ({{symbol}})</h4>
-      <table div class = 'table'>
+      <table div class = 'table price'>
         <th>Bid</th>
         <th>Ask</th>
         <tr>
@@ -29,10 +29,10 @@
       </form>
     {% endif %}
   </div>
-  <div class = 'col-md-6'>
+  <div class = 'col-md-5 col-lg-5'>
     <h4>Current Portfolio</h4>
     <h4>Cash: ${{money}}</h4>
-      <table div class = 'table'>
+      <table div class = 'table stocks'>
         <th>Company</th>
         <th>Quantity</th>
         <th>Price Paid</th>
