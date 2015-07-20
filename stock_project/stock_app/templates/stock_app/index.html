@@ -11,21 +11,23 @@
       Stock Symbol: <input type = 'text' name = 's'>
       <input type = 'submit'>
     </form>
-      <br/>
-    <h4>Stock Name: {{name}} ({{symbol}})</h4>
-    <table div class = 'table'>
-      <th>Bid</th>
-      <th>Ask</th>
-      <tr>
-        <td>{{bid}}</td>
-        <td>{{ask}}</td>
-      </tr>
-    </table>
-    <form action = '/buy' input = 'GET'>
-      Quantity: <input type = 'integer' name = 'q'>
-      <input type = 'Submit' value = 'BUY' name = 'buy'>
-      <input type = 'Submit' value = 'SELL' name = 'sell'>
-    </form>
+    <br/>
+    {%if name %}
+      <h4>Stock Name: {{name}} ({{symbol}})</h4>
+      <table div class = 'table'>
+        <th>Bid</th>
+        <th>Ask</th>
+        <tr>
+          <td>{{bid}}</td>
+          <td>{{ask}}</td>
+        </tr>
+      </table>      
+      <form action = '/buy' input = 'GET'>
+        Quantity: <input type = 'integer' name = 'q'>
+        <input type = 'Submit' value = 'BUY' name = 'buy'>
+        <input type = 'Submit' value = 'SELL' name = 'sell'>
+      </form>
+    {% endif %}
   </div>
   <div class = 'col-md-6'>
     <h4>Current Portfolio</h4>
